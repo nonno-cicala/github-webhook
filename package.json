@@ -1,0 +1,14 @@
+{
+  "name": "webhooks",
+  "version": "0.0.1",
+  "description": "My server for managing incoming webhooks",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Simone Scanzoni",
+  "license": "GPL-2.0",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
