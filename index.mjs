@@ -7,7 +7,8 @@ const app = express()
 const PORT = 21913
 
 const actions = (body) => {
-  spawnSync('git', ['-C', '/var/www/mailsoftware-dev.alguerhome.it/mailsoftware_siteground/', 'pull'])
+  if (body.ref === 'refs/heads/dev-simone')
+    spawnSync('git', ['-C', '/var/www/mailsoftware-dev.alguerhome.it/mailsoftware_siteground/', 'pull'])
 }
 
 app.use(express.json({
