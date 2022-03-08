@@ -6,6 +6,9 @@ import { env } from "process"
 const app = express()
 const PORT = 21913
 
+const actions = () => {
+}
+
 app.use(express.json({
   verify: (req, res, buf, encoding) => {
     if (buf && buf.length) {
@@ -20,23 +23,18 @@ app.post('/', (req, res) => {
   // date.stdout.on('data', data => {
   //   console.log(data.toString())
   // })
-  // const pwd = exec('pwd')
-  // pwd.stdout.on('data', data => {
-  //   console.log(data.toString())
-  // })
   // console.log(spawnSync('date').stdout.toString())
   const hashAlg = 'sha256'
   const hmac = createHmac(hashAlg, env.GITHUB_WEBHOOK_SECRET)
   const digest = Buffer.from(hashAlg + '=' + hmac.update(req.rawBody).digest('hex'), 'utf8')
   const sig = Buffer.from(req.get('x-hub-signature-256') || '', 'utf8')
-  if (!timingSafeEqual(sig, digest)) {
-    res.status(400).send('Signature did not match').end()
-  }
-  res.status(200).end()
+  timingSafeEqual(sig, digest)
+    ? (res.status(200).end(), actions())
+    : res.status(400).send('Signature did not match').end()
 })
 
 // app.get('/', (req, res) => {
-//   res.send('Ciao, da grande voglio essere un hook').end()
+//   res.send('Hello, when I grow up I wanna be a hook').end()
 // })
 
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
