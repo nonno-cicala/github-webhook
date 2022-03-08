@@ -6,7 +6,7 @@ import { env } from "process"
 const app = express()
 const PORT = 21913
 
-const actions = () => {
+const actions = (body) => {
   spawnSync('git', ['-C', '/var/www/mailsoftware-dev.alguerhome.it/mailsoftware_siteground/', 'pull'])
 }
 
@@ -30,7 +30,7 @@ app.post('/', (req, res) => {
   const digest = Buffer.from(hashAlg + '=' + hmac.update(req.rawBody).digest('hex'), 'utf8')
   const sig = Buffer.from(req.get('x-hub-signature-256') || '', 'utf8')
   timingSafeEqual(sig, digest)
-    ? (res.status(200).end(), actions())
+    ? (res.status(200).end(), actions(req.body))
     : res.status(400).send('Signature did not match').end()
 })
 
