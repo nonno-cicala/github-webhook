@@ -34,7 +34,7 @@ app.post('/', (req, res) => {
 })
 
 // app.get('/', (req, res) => {
-//   res.send('Hello, when I grow up I wanna be a hook').end()
+//   res.send('Hello, when I grow up I wanna be a hook server').end()
 // })
 
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
