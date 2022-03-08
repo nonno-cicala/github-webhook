@@ -1,5 +1,5 @@
 import express from "express"
-// import { spawnSync } from "child_process"
+import { spawnSync } from "child_process"
 import { createHmac, timingSafeEqual } from "crypto"
 import { env } from "process"
 
@@ -7,6 +7,7 @@ const app = express()
 const PORT = 21913
 
 const actions = () => {
+  spawnSync('git', ['-C', '/var/www/mailsoftware-dev.alguerhome.it/mailsoftware_siteground/', 'pull'])
 }
 
 app.use(express.json({
