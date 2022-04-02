@@ -3,10 +3,12 @@ import { spawnSync } from "child_process"
 import { createHmac, timingSafeEqual } from "crypto"
 import { env } from "process"
 
-const PORT = env.PORT
+const PORT = env.PORT || 2022
 const GITHUB_WEBHOOK_SECRET = env.GITHUB_WEBHOOK_SECRET
 const BRANCH = 'refs/heads/' + env.BRANCH
 const LOCAL_REPOSITORY = env.LOCAL_REPOSITORY
+
+if (GITHUB_WEBHOOK_SECRET === undefined) throw 'Missing GITHUB_WEBHOOK_SECRET'
 
 const app = express()
 
