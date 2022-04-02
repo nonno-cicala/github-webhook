@@ -3,8 +3,10 @@ import express from "express"
 import { createHmac, timingSafeEqual } from "crypto"
 import { env } from "process"
 
-const PORT = env.PORT
+const PORT = env.PORT || 2022
 const GITHUB_WEBHOOK_SECRET = env.GITHUB_WEBHOOK_SECRET
+
+if (GITHUB_WEBHOOK_SECRET === undefined) throw 'Missing GITHUB_WEBHOOK_SECRET'
 
 const app = express()
 
