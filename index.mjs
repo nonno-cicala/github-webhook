@@ -5,12 +5,14 @@ import { env } from "process"
 
 const PORT = env.PORT
 const GITHUB_WEBHOOK_SECRET = env.GITHUB_WEBHOOK_SECRET
+const BRANCH = 'refs/heads/' + env.BRANCH
+const LOCAL_REPOSITORY = env.LOCAL_REPOSITORY
 
 const app = express()
 
 const actions = (body) => {
-  if (body.ref === 'refs/heads/dev-simone')
-    spawnSync('git', ['-C', '/var/www/mailsoftware-dev.alguerhome.it/mailsoftware_siteground/', 'pull'])
+  if (body.ref === BRANCH)
+    spawnSync('git', ['-C', LOCAL_REPOSITORY, 'pull'])
 }
 
 app.use(express.json({
