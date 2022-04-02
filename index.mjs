@@ -4,11 +4,12 @@ import { createHmac, timingSafeEqual } from "crypto"
 import { env } from "process"
 
 const PORT = env.PORT || 2022
+const BRANCH = 'refs/heads/' + env.BRANCH || 'main'
 const GITHUB_WEBHOOK_SECRET = env.GITHUB_WEBHOOK_SECRET
-const BRANCH = 'refs/heads/' + env.BRANCH
 const LOCAL_REPOSITORY = env.LOCAL_REPOSITORY
 
 if (GITHUB_WEBHOOK_SECRET === undefined) throw 'Missing GITHUB_WEBHOOK_SECRET'
+if (LOCAL_REPOSITORY === undefined) throw 'Missing LOCAL_REPOSITORY'
 
 const app = express()
 
