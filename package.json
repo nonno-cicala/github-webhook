@@ -1,7 +1,7 @@
 {
   "name": "webhooks",
   "version": "0.0.1",
-  "description": "My server for managing incoming webhooks",
+  "description": "My server for managing incoming GitHub webhooks",
   "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
