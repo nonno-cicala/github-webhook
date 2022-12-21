@@ -4,7 +4,7 @@ import { createHmac, timingSafeEqual } from "crypto"
 import { env } from "process"
 
 const PORT = env.PORT || 2022
-const BRANCH = 'refs/heads/' + env.BRANCH || 'main'
+const BRANCH = 'refs/heads/' + (env.BRANCH || 'main')
 const GITHUB_WEBHOOK_SECRET = env.GITHUB_WEBHOOK_SECRET
 const LOCAL_REPOSITORY = env.LOCAL_REPOSITORY
 
